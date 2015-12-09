@@ -29,5 +29,7 @@ global $configDetails;
 	$configDetails['SITE_NAME']					= "FlockMails";
 	$configDetails['SITE_TITLE']				= "Welcome to FlockMails :: ";
 	$configDetails['domainName']				= "flockmails_refined.com";
+        
+        $configDetails['user_files']				= "files/";
 	
 ?>

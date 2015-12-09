@@ -127,6 +127,7 @@ if(count($errorList)>0)
 	}
 }
 
+include_once('./filemanager.php');
 
 $smarty->assign('errorString',$errorString);
 $smarty->display('createtemplates_next.tpl');
