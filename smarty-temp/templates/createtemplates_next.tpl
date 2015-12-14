@@ -100,6 +100,26 @@
 		$scope.disabled = false;
 	};
   </script>
-   
+   <script type="text/javascript">
+      var client = new ZeroClipboard( $('.cpy-bt') );
+
+      client.on( 'ready', function(event) {
+        //alert( 'movie is loaded' );
+
+        client.on( 'copy', function(event) {
+          event.clipboardData.setData('text/plain', event.target.id.value);
+        } );
+
+        client.on( 'aftercopy', function(event) {
+         //alert('Copied text to clipboard: ' + event.data['text/plain']);
+         alert('URL copied');
+        } );
+      } );
+
+      client.on( 'error', function(event) {
+        // console.log( 'ZeroClipboard error of type "' + event.name + '": ' + event.message );
+        ZeroClipboard.destroy();
+      } );
+    </script>
   
 {include file="end.tpl" title="End of the page"}
