@@ -114,6 +114,33 @@ class home extends db
 			}
 			return $condArray;
 		}
+		
+		public function getTotalSubscriber($userId)
+		{
+			$totalSubs=0;
+			
+			$fetchQry 	= " select * from contact_lists where list_user_id=?";
+			$this->prepareConditionStatement($fetchQry,array($userId));
+			$customCnt 	= $this->getAffectedRows();
+			if($customCnt>0)
+			{
+				$alllists	 	= 	$this->resultSetAll($fetchQry,array($userId)); 
+			}
+			
+			if($customCnt>0)
+			{
+				foreach($alllists as $listKey=>$listValue)
+				{
+					$listId=$listValue['list_id'];
+					$fetchQry1 	= " select contactlist_id from contact_subscribers where contactlist_id=?";
+					$this->prepareConditionStatement($fetchQry1,array($listId));
+					$ct 	= $this->getAffectedRows();
+					$totalSubs=$totalSubs+$ct;
+				}
+			}
+			return $totalSubs;
+		}
+
 	
 }
 ?>
